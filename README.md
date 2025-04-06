@@ -18,7 +18,44 @@
 
 ### نصب
 
-1. پروژه رو کلون کن:
+1. پکیج را از ناگت دانلود یا نصب کنید([nuget.org](https://www.nuget.org/packages/LibreTranslate)):
 
 ```bash
-git clone https://github.com/username/repo-name.git
+dotnet add package LibreTranslate --version 1.0.0
+```
+
+---
+
+## ⚙️ تنظیمات (Configuration)
+
+### کلاس LibreTranslateConfig
+
+```bash
+public class LibreTranslateConfig
+{
+    public static readonly string Configuration = "LibreTranslateConfig";
+    public string ApiAddress { get; set; }
+    public string ApiKey { get; set; }
+    public string Source { get; set; }
+    public string TargetPath { get; set; }
+}
+```
+
+###  فایل جیسون
+```bash
+"LibreTranslateConfig": {
+  "ApiAddress": "https://libretranslate.com/translate",
+  "ApiKey": "",
+  "Source": "en",
+  "TargetPath": "translations"
+}
+```
+
+---
+
+## 🚀 نحوه استفاده (How to use)
+
+
+```bash
+
+```
