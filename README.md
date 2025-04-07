@@ -1,36 +1,36 @@
-# 📌 کتابخانه ای برای پروژه های چند زبانه با ترجمه خودکار آنلاین با ذخیره سازی با استفاده از LibreTranslate 
+# 📌 A Library for Multilingual Projects with Online Auto-Translation and Storage Using LibreTranslate 
 
-با استفاده از این کتابخانه و LibreTranslate پروزه های خود را بدون نیاز به ترجمه به زبانهای مختلف می توانید به صورت آفلاین یا آنلاین و اتومات پروژه به صورت چند زبانه تبدیل شود.
-
----
-
-## 🔧 ویژگی‌ها (Features)
-
-- ✅ پروژه را فقط به یک زبان ایجاد کنید کتابخانه پروژه شما را چند زبانه میکند
-- 📂 ایجاد فایلهای ترجمه برای هر زبان
-- 🌐 آنلاین و به صورت اتومات و یا آفلاین
-- 🍂 قابلیت تغییر ترجمه ها حتی بعد از پیاده سازی
-- 🗝️ امکان تعریف کلید
-- 🗄️ ذخیره ترجمه ها در فایل
-- 🔂 خواندن دفعات بعد از فایل ترجمه
-- 💡 استفاده از کش برای جلوگیری از خواندن متعدد ترجمه ها از فایل
+Using this library and LibreTranslate, you can easily make your project multilingual without manually translating it into different languages. Whether offline or online, the project becomes multilingual automatically.
 
 ---
 
-## 🚀 شروع سریع (Getting Started)
+## 🔧 Features
 
-### نصب
+- ✅ Build your project in just one language — the library will handle the multilingual part.
+- 📂 Generates translation files for each language.
+- 🌐 Supports both automatic online translation and offline use.
+- 🍂 Ability to edit translations even after implementation.
+- 🗝️ Supports defining translation keys.
+- 🗄️ Saves translations to file.
+- 🔂 Reads translations from file on subsequent loads.
+- 💡  Uses caching to avoid redundant file reads.
 
-1. پکیج را از ناگت دانلود یا نصب کنید([nuget.org](https://www.nuget.org/packages/LibreTranslate)):
+---
+
+## 🚀 Getting Started
+
+### Installation
+
+1. Download or install the package via NuGet([nuget.org](https://www.nuget.org/packages/LibreTranslate)):
 
 ```bash
 dotnet add package LibreTranslate --version 1.0.0
 ```
 
-2. بعد از نصب پکیج می توانید در قسمت های مختلف پروژه به شکل زیر استفاده کنید
+2. After installation, you can use it in different parts of your project as shown below.
 ---
 
-### افزودن وابستگی
+### Dependency Injection
 ```bash
 // Add HttpClient for LibreTranslateService
 builder.Services.AddHttpClient<LibreTranslateService>();
@@ -42,7 +42,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ILibreStringLocalizer, LibreStringLocalizer>();
 ```
 
-### استفاده در سرویس
+### Usage in a Service
 ```bash
 public class MyService : IMyService
 {
@@ -62,7 +62,7 @@ public class MyService : IMyService
 }
 ```
 
-### استفاده در PageModel
+### Usage in PageModel
 ```bash
 public class IndexModel : PageModel
 {
@@ -82,7 +82,7 @@ public class IndexModel : PageModel
 }
 ```
 
-### استفاده در Html
+### Usage in HTML
 ```bash
 @page
 @using LibreTranslate
@@ -94,9 +94,9 @@ public class IndexModel : PageModel
 <p>@Model.TranslatedText</p>
 ```
 
-## ⚙️ تنظیمات (Configuration)
+## ⚙️ Configuration
 
-### کلاس LibreTranslateConfig
+### LibreTranslateConfig Class
 
 ```bash
 public class LibreTranslateConfig
@@ -109,7 +109,7 @@ public class LibreTranslateConfig
 }
 ```
 
-###  فایل جیسون
+###  JSON Configuration
 ```bash
 "LibreTranslateConfig": {
   "ApiAddress": "https://libretranslate.com/translate",
