@@ -2,6 +2,9 @@
 
 Using this library and LibreTranslate, you can easily make your project multilingual without manually translating it into different languages. Whether offline or online, the project becomes multilingual automatically.
 
+Thanks [LibreTranslate project](https://github.com/LibreTranslate/LibreTranslate) Free and Open Source Machine Translation API, entirely self-hosted. Unlike other APIs, it doesn't rely on proprietary providers such as Google or Azure to perform translations.
+Using Docker, you can host the service on your server or locally.
+
 ---
 
 ## 🔧 Features
@@ -27,7 +30,15 @@ Using this library and LibreTranslate, you can easily make your project multilin
 dotnet add package LibreTranslate --version 1.0.0
 ```
 
-2. After installation, you can use it in different parts of your project as shown below.
+2. self-hoste with docker
+
+### Docker
+[Docker Documents](https://hub.docker.com/r/libretranslate/libretranslate)
+```bash
+docker run -d -p 5000:5000 --name libretranslate -v libretranslate_data:/app/data libretranslate/libretranslate --api-keys --req-limit 120
+```
+
+3. After installation, you can use it in different parts of your project as shown below.
 ---
 
 ### Dependency Injection
