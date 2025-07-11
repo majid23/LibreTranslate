@@ -19,7 +19,7 @@ namespace LibreTranslate
 
         public async Task<string> TranslateAsync(string text, string source, string target)
         {
-            if (string.IsNullOrWhiteSpace(text))
+            if (string.IsNullOrWhiteSpace(text) || string.IsNullOrWhiteSpace(_config.ApiAddress))
                 return text;
 
             var body = new
@@ -31,16 +31,16 @@ namespace LibreTranslate
                 api_key = _config.ApiKey
             };
 
-            var json = JsonConvert.SerializeObject(body);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PostAsync(_config.ApiAddress, content);
-            response.EnsureSuccessStatusCode();
-
-            var resultJson = await response.Content.ReadAsStringAsync();
-
             try
             {
+                var json = JsonConvert.SerializeObject(body);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync(_config.ApiAddress, content);
+                response.EnsureSuccessStatusCode();
+
+                var resultJson = await response.Content.ReadAsStringAsync();
+
                 var result = JsonConvert.DeserializeObject<TranslationResult>(resultJson);
                 return result?.TranslatedText ?? text;
             }
