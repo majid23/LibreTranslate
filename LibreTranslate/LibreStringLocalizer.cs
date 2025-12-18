@@ -11,7 +11,7 @@ namespace LibreTranslate
 {
     public class LibreStringLocalizer : ILibreStringLocalizer
     {
-        private readonly LibreTranslateService _translateService;
+        private readonly ILibreTranslateService _translateService;
         private readonly LibreTranslateConfig _config;
         private readonly IMemoryCache _memoryCache;
 
@@ -26,7 +26,7 @@ namespace LibreTranslate
         private readonly TimeSpan _cacheDuration = TimeSpan.FromHours(24);
 
         public LibreStringLocalizer(
-            LibreTranslateService translateService,
+            ILibreTranslateService translateService,
             IOptions<LibreTranslateConfig> config,
             IMemoryCache memoryCache)
         {
