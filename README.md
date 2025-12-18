@@ -49,7 +49,13 @@ builder.Services.AddHttpClient<LibreTranslateService>();
 // Add memory cache
 builder.Services.AddMemoryCache();
 
+// LibreTranslate config
+services.Configure<LibreTranslateConfig>(
+    config.GetSection(LibreTranslateConfig.Configuration)
+);
+
 // Register localizer
+builder.Services.AddScoped<ILibreTranslateService, LibreTranslateService>();
 builder.Services.AddScoped<ILibreStringLocalizer, LibreStringLocalizer>();
 ```
 
