@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Text.Json;
 
 namespace LibreTranslate
 {
@@ -145,7 +145,7 @@ namespace LibreTranslate
             try
             {
                 var json = File.ReadAllText(filePath);
-                var dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                var dict = JsonSerializer.Deserialize<Dictionary<string, string>>(json);
                 return dict ?? new Dictionary<string, string>();
             }
             catch
@@ -159,7 +159,7 @@ namespace LibreTranslate
             var filePath = GetFilePathForCulture(culture);
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-            var json = JsonConvert.SerializeObject(dictionary);
+            var json = JsonSerializer.Serialize(dictionary);
             File.WriteAllText(filePath, json, System.Text.Encoding.UTF8);
         }
 

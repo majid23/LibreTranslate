@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
-using System.Text;
-using Newtonsoft.Json;
 using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace LibreTranslate
 {
-    public class LibreTranslateService
+    public class LibreTranslateService : ILibreTranslateService
     {
         private readonly LibreTranslateConfig _config;
         private readonly HttpClient _httpClient;
@@ -33,7 +33,7 @@ namespace LibreTranslate
 
             try
             {
-                var json = JsonConvert.SerializeObject(body);
+                var json = JsonSerializer.Serialize(body);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 var response = await _httpClient.PostAsync(_config.ApiAddress, content);
@@ -41,7 +41,7 @@ namespace LibreTranslate
 
                 var resultJson = await response.Content.ReadAsStringAsync();
 
-                var result = JsonConvert.DeserializeObject<TranslationResult>(resultJson);
+                var result = JsonSerializer.Deserialize<TranslationResult>(resultJson);
                 return result?.TranslatedText ?? text;
             }
             catch
